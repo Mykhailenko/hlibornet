@@ -22,7 +22,7 @@ public class FileSystemClassScanner {
 				className = className.substring(4);
 				className = className.substring(0, className.length() - 5);
 				Class<?> forName = Class.forName(className);
-				LOGGER.debug("find: " + forName.toString());
+				LOGGER.info("find: " + forName.toString());
 				result.add(forName);
 			}else{
 				result.addAll(getClassesInDirectory(file));

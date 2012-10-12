@@ -28,30 +28,31 @@ public class SessionFactory {
 	
 	@SuppressWarnings("static-access")
 	private PreparedModel loadModel() throws ClassNotFoundException {
-		LOGGER.debug("loadModel");
+		LOGGER.info("loadModel");
 		PreparedModel model = new PreparedModel();
 		FileSystemClassScanner scanner = new FileSystemClassScanner();
 		for(Class<?> cls : scanner.getClassesInPackage(configuration.getScanPackage())){
 			BlackJack blackJack = cls.getAnnotation(BlackJack.class);
 			if(blackJack != null){
 				if(blackJack.name().equals("")){
-					LOGGER.debug("find class: " + cls.getSimpleName());
+					LOGGER.info("find class: " + cls.getSimpleName());
 					Table table = new Table();
 					table.setClazz(cls);
 					table.setName(cls.getSimpleName().toLowerCase());
 					for(Field field : cls.getDeclaredFields()){
-						if(field.getAnnotation(Transient.class) == null){
+						if(field.getAnnotation(Transient.class) == null &&
+								!TypeConverter.implCollection(field.getType().getClass())){
 							Column column = new Column();
 							column.setName(field.getName());
 							column.setNullable(false);// TODO nullable
 							column.setPrimary(false); // TODO primary
-							column.setType(TypeConverter.convert(field.getType()));
-							LOGGER.debug("find field: " + field.getName());
-							LOGGER.debug("added column: " + column.toString());
+							column.setType(TypeConverter.convert(field.getType(), configuration.getScanPackage()));
+							LOGGER.info("find field: " + field.getName());
+							LOGGER.info("added column: " + column.toString());
 							table.addColumn(column);
 						}
 					}
-					LOGGER.debug("added table: " + table.toString());
+					LOGGER.info("added table: " + table.toString());
 					model.getTables().add(table);
 				}
 			}

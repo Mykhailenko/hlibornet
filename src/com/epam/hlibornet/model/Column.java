@@ -10,6 +10,7 @@ public class Column {
 	private boolean nullable;
 	private boolean primary;
 	private Table parent;
+	private boolean internal;
 	public String getName() {
 		return name;
 	}
@@ -45,6 +46,13 @@ public class Column {
 	}
 	public void setParent(Table parent) {
 		this.parent = parent;
+	}
+	
+	public boolean isInternal() {
+		return internal;
+	}
+	public void setInternal(boolean internal) {
+		this.internal = internal;
 	}
 	@Override
 	public String toString() {

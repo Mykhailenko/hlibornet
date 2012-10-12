@@ -28,9 +28,10 @@ public class Main {
 		for(Student student : all){
 			System.out.println(student);
 		}
-		List<Faculty> faculties = session.getAll(Faculty.class); 
-		for(Faculty faculty : faculties){
-			System.out.println(faculty);
-		}
+//		List<Faculty> faculties = session.getAll(Faculty.class); 
+//		for(Faculty faculty : faculties){
+//			System.out.println(faculty);
+//		}
+//		System.out.println(session.getById(Student.class, 1));
 	}
 }

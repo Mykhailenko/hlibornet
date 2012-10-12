@@ -1,11 +1,19 @@
 package com.epam.hlibornet.model;
 
+import java.text.MessageFormat;
+
 public class ForeignKey {
 	private String name;
 	
 	private Column from;
 	
 	private Column to;
+
+	@Override
+	public String toString() {
+		return MessageFormat.format("ForeignKey [name={0}, from={1}, to={2}]",
+				name, from.getName(), to.getName());
+	}
 	
 	public String getName() {
 		return name;

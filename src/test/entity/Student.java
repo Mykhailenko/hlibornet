@@ -1,20 +1,25 @@
 package test.entity;
 
 import java.text.MessageFormat;
+import java.util.List;
 
 import com.epam.hlibornet.annotation.BlackJack;
+import com.epam.hlibornet.annotation.Id;
 
 @BlackJack
 public class Student {
 	
+	@Id
 	private int id;
 	
 	private String firstName;
 	
 	private String secondName;
 	
-	private int refFaculty;
+	private Faculty refFaculty;
 
+	private List<Diploma> diplomas;
+	
 	public int getId() {
 		return id;
 	}
@@ -39,13 +44,20 @@ public class Student {
 		this.secondName = secondName;
 	}
 	
-	
-	public int getRefFaculty() {
+	public Faculty getRefFaculty() {
 		return refFaculty;
 	}
 
-	public void setRefFaculty(int refFaculty) {
+	public void setRefFaculty(Faculty refFaculty) {
 		this.refFaculty = refFaculty;
+	}
+	
+	public List<Diploma> getDiplomas() {
+		return diplomas;
+	}
+
+	public void setDiplomas(List<Diploma> diplomas) {
+		this.diplomas = diplomas;
 	}
 
 	@Override
@@ -73,10 +85,8 @@ public class Student {
 	@Override
 	public String toString() {
 		return MessageFormat
-				.format("Student [id={0}, firstName={1}, secondName={2}, refFaculty={3}]",
-						id, firstName, secondName, refFaculty);
+				.format("Student [id={0}, firstName={1}, secondName={2}, refFaculty={3}, diplomas={4}]",
+						id, firstName, secondName, refFaculty, diplomas);
 	}
-	
-	
 	
 }

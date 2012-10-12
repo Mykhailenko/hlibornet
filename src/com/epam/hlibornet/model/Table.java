@@ -7,6 +7,7 @@ import java.util.Set;
 
 import com.epam.hlibornet.Finder;
 import com.epam.hlibornet.ReflectiveUtil;
+import com.epam.hlibornet.Session;
 
 public class Table {
 	private Class<?> clazz;
@@ -23,24 +24,7 @@ public class Table {
 		columns.add(column);
 	}
 	
-	public Object createOne(ResultSet resultSet) throws Exception {
-		Object noobie = clazz.newInstance();
-		for(Column column : columns){
-			switch (column.getType()) {
-			case INT:
-				int int1 = resultSet.getInt(column.getName());
-				ReflectiveUtil.setField(noobie, column.getName(), int1);
-				break;
-			case VARCHAR:
-				String string = resultSet.getString(column.getName());
-				ReflectiveUtil.setField(noobie, column.getName(), string);
-				break;
-			default:
-				break;
-			}
-		}
-		return noobie;
-	}
+	
 
 	public Set<Column> getColumns() {
 		return columns;
