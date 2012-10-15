@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.epam.hlibornet.annotation.BlackJack;
 import com.epam.hlibornet.annotation.Id;
+import com.epam.hlibornet.annotation.ManyToOne;
+import com.epam.hlibornet.annotation.OneToMany;
 
 @BlackJack
 public class Student {
@@ -16,8 +18,10 @@ public class Student {
 	
 	private String secondName;
 	
-	private Faculty refFaculty;
+	@ManyToOne(fieldName = "refFaculty")
+	private Faculty faculty;
 
+	@OneToMany(fieldName = "ref_id")
 	private List<Diploma> diplomas;
 	
 	public int getId() {
@@ -44,14 +48,15 @@ public class Student {
 		this.secondName = secondName;
 	}
 	
-	public Faculty getRefFaculty() {
-		return refFaculty;
+	
+	public Faculty getFaculty() {
+		return faculty;
 	}
 
-	public void setRefFaculty(Faculty refFaculty) {
-		this.refFaculty = refFaculty;
+	public void setFaculty(Faculty faculty) {
+		this.faculty = faculty;
 	}
-	
+
 	public List<Diploma> getDiplomas() {
 		return diplomas;
 	}
@@ -86,7 +91,7 @@ public class Student {
 	public String toString() {
 		return MessageFormat
 				.format("Student [id={0}, firstName={1}, secondName={2}, refFaculty={3}, diplomas={4}]",
-						id, firstName, secondName, refFaculty, diplomas);
+						id, firstName, secondName, faculty, diplomas);
 	}
 	
 }

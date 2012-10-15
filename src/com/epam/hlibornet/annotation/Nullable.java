@@ -7,9 +7,6 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ManyToMany {
-	String linkTableName();
-	String fieldNameToOwner();
-	String fieldNameToOther();
-	Class<?> clazz() default Object.class;
+public @interface Nullable {
+
 }

@@ -6,6 +6,7 @@ public class Configuration {
 	private String bdName;
 	private String username;
 	private String password;
+	private Dialect dialect;
 	public String getScanPackage() {
 		return scanPackage;
 	}
@@ -35,6 +36,12 @@ public class Configuration {
 	}
 	public void setBdName(String bdName) {
 		this.bdName = bdName;
+	}
+	public Dialect getDialect() {
+		return dialect;
+	}
+	public void setDialect(Dialect dialect) {
+		this.dialect = dialect;
 	}
 	
 	

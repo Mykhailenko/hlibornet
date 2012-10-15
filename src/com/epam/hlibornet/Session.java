@@ -1,22 +1,17 @@
 package com.epam.hlibornet;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.TypeVariable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import test.entity.Student;
 
 import com.epam.hlibornet.model.Column;
-import com.epam.hlibornet.model.ForeignKey;
 import com.epam.hlibornet.model.PreparedModel;
 import com.epam.hlibornet.model.Table;
 
@@ -89,13 +84,6 @@ public class Session {
 				break;
 			}
 		}
-		for(ForeignKey fk : preparedModel.findFKsToThisTable(table)){
-			Field finded = Session.findCollectionFieldForTable(noobie, fk.getFrom().getField().getClass());
-			if(finded != null){
-//				finded.set(noobie, getAll(fk.getFrom().getField().getClass(), fk.getFrom().getName() + " = "))
-			}
-		}
-		
 		return noobie;
 	}
 	

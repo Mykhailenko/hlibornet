@@ -8,15 +8,9 @@ import com.epam.hlibornet.Finder;
 
 public class PreparedModel {
 	private Set<Table> tables = new HashSet<>();
-	private Set<ForeignKey> foreignKeys = new HashSet<>();
+	private Set<OneToManeRelation> oneToManeRelations = new HashSet<>();
+	private Set<ManyToManyRelation> manyToManyRelations = new HashSet<>();
 	
-	
-	public List<ForeignKey> findFKsToThisTable(Table table) throws Exception{
-		return Finder.findAll(foreignKeys, table, "to", "parent");
-	}
-	public List<ForeignKey> findFKsFromThisTable(Table table) throws Exception{
-		return Finder.findAll(foreignKeys, table, "from", "parent");
-	}
 	public Table findTable(String name) throws Exception{
 		return (Table) Finder.find(tables, name, "name");
 	}
@@ -35,13 +29,22 @@ public class PreparedModel {
 		this.tables = tables;
 	}
 
-
-	public Set<ForeignKey> getForeignKeys() {
-		return foreignKeys;
+	public Set<OneToManeRelation> getOneToManeRelations() {
+		return oneToManeRelations;
 	}
 
-	public void setForeignKeys(Set<ForeignKey> foreignKeys) {
-		this.foreignKeys = foreignKeys;
+	public void setOneToManeRelations(Set<OneToManeRelation> oneToManeRelations) {
+		this.oneToManeRelations = oneToManeRelations;
 	}
+
+	public Set<ManyToManyRelation> getManyToManyRelations() {
+		return manyToManyRelations;
+	}
+
+	public void setManyToManyRelations(Set<ManyToManyRelation> manyToManyRelations) {
+		this.manyToManyRelations = manyToManyRelations;
+	}
+
+	
 	
 }
